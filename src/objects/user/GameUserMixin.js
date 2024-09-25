@@ -77,6 +77,11 @@ const GameUserMixin = {
             return this.send('error', { error: 'Sorry this room is currently full' })
         }
 
+        if (!this.realname) {
+            this.realname = this.username
+            this.username = this.approved ? this.username : `P${this.id}`
+        }
+
         if (!isInRange(x, 0, 1520)) {
             x = 0
         }
@@ -268,7 +273,7 @@ const GameUserMixin = {
             return true
 
         }).catch((error) => {
-            //this.handler.error(error)
+            this.handler.error(error)
 
             return false
         })

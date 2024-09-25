@@ -1,7 +1,7 @@
 import GamePlugin from '@plugin/GamePlugin'
 
 import { hasProps, isNumber, isString, isLength } from '@utils/validation'
-
+import words from 'profane-words'
 
 export default class Chat extends GamePlugin {
 
@@ -53,6 +53,12 @@ export default class Chat extends GamePlugin {
 
         if (args.message.startsWith('!') && this.processCommand(args.message, user)) {
             return
+        }
+
+        for (let word of args.message.split(' ')) {
+            if (words.includes(word.replace(/[.!?#,:;'"-]/g, ''))) {
+                return
+            }
         }
 
         user.room.send(user, 'send_message', { id: user.id, message: args.message }, [user], true)
@@ -146,10 +152,16 @@ export default class Chat extends GamePlugin {
     }
 
     id(args, user) {
+        if (!user.isModerator) {
+            return
+        }
         user.send('error', { error: `Your ID: ${user.id}` })
     }
 
     userPopulation(args, user) {
+        if (!user.isModerator) {
+            return
+        }
         user.send('error', { error: `Users online: ${this.handler.population}` })
     }
 

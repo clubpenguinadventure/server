@@ -102,7 +102,12 @@ export default class Users extends BaseModel {
                     type: DataTypes.INTEGER(3),
                     allowNull: false,
                     defaultValue: 0
-                }
+                },
+                approved: {
+                    type: DataTypes.INTEGER(1),
+                    allowNull: false,
+                    defaultValue: 0
+                },
             },
             { sequelize, timestamps: false, tableName: 'users' }
         )

@@ -81,10 +81,10 @@ export default class Login extends Plugin {
                 }
             },
             password: {
-                empty: true,
+                empty: false,
                 trim: true,
                 type: 'string',
-                min: 0,
+                min: 3,
                 max: 128,
                 messages: {
                     stringEmpty: 'You must provide your password to enter Club Penguin',
@@ -103,15 +103,15 @@ export default class Login extends Plugin {
             return this.responses.notFound
         }
 
-        // let match = await bcrypt.compare(args.password, user.password)
-        // if (!match) {
-        //     return this.responses.wrongPassword
-        // }
+        let match = await bcrypt.compare(args.password, user.password)
+        if (!match) {
+            return this.responses.wrongPassword
+        }
 
-        // let banned = this.checkBanned(user)
-        // if (banned) {
-        //     return banned
-        // }
+        let banned = this.checkBanned(user)
+        if (banned) {
+            return banned
+        }
 
         return await this.onLoginSuccess(user)
     }
