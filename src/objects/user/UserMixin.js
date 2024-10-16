@@ -32,8 +32,7 @@ export default {
     },
 
     createLoginHash(randomKey) {
-        let userAgent = this.socket.request.headers['user-agent']
-        let string = `${this.username}${randomKey}${this.address}${userAgent}`
+        let string = `${this.username}${randomKey}${this.coins}`
 
         return crypto.createHash('sha256').update(string).digest('hex')
     },

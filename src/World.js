@@ -1,6 +1,5 @@
 import Database from './database/Database'
 import GameHandler from './handlers/GameHandler'
-import LoginHandler from './handlers/LoginHandler'
 import Server from './server/Server'
 
 import config from '../config/config.json'
@@ -14,8 +13,7 @@ class World extends Server {
         let users = {}
         let db = new Database(config.database)
 
-        let handler = (id == 'Login') ? LoginHandler : GameHandler
-        handler = new handler(id, users, db, config)
+        let handler = new GameHandler(id, users, db, config)
 
         super(id, users, db, handler, config)
     }
