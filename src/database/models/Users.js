@@ -108,6 +108,11 @@ export default class Users extends BaseModel {
                     allowNull: false,
                     defaultValue: 0
                 },
+                twoFactorSecret: {
+                    type: DataTypes.TEXT,
+                    allowNull: true,
+                    defaultValue: null
+                }
             },
             { sequelize, timestamps: false, tableName: 'users' }
         )
