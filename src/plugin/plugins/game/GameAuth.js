@@ -21,6 +21,12 @@ export default class GameAuth extends GamePlugin {
     // Events
 
     async gameAuth(args, user) {
+        if (user.triedGameAuth) {
+            // Prevent an exploit where a user can send a second game_auth packet to hijack another user's account
+            return user.close()
+        }
+        user.triedGameAuth = true
+
         if (!hasProps(args, 'username', 'key')) {
             return
         }
@@ -42,7 +48,7 @@ export default class GameAuth extends GamePlugin {
             return user.close()
         }
 
-        if (args.key.length != 64) {
+        if (!args.key || args.key.length != 64) {
             return user.close()
         }
 
