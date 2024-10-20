@@ -83,7 +83,7 @@ export default class CardInstance extends BaseInstance {
     start() {
         let users = this.users.map(user => {
             return {
-                username: user.username,
+                username: user.nickname,
                 color: user.color,
                 ninjaRank: user.ninjaRank
             }
@@ -412,7 +412,7 @@ export default class CardInstance extends BaseInstance {
     }
 
     closeGame(user) {
-        this.send('close_game', { username: user.username })
+        this.send('close_game', { username: user.nickname })
     }
 
     getPick(seat) {

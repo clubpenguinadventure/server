@@ -22,7 +22,8 @@ export default class Chat extends GamePlugin {
             'ac': this.addCoins,
             'jr': this.joinRoom,
             'id': this.id,
-            'users': this.userPopulation
+            'users': this.userPopulation,
+            'addall': this.addAll
         }
 
         this.bindCommands()
@@ -59,11 +60,13 @@ export default class Chat extends GamePlugin {
 
         for (let word of args.message.split(' ')) {
             if (words.includes(word.replace(/[.!?#,:;'"-]/g, ''))) {
+                this.mongo.logChatMessage(user.id, args.message, user.room.id, true)
                 return
             }
         }
 
         user.room.send(user, 'send_message', { id: user.id, message: args.message }, [user], true)
+        this.mongo.logChatMessage(user.id, args.message, user.room.id, false)
     }
 
     sendSafe(args, user) {
@@ -118,6 +121,28 @@ export default class Chat extends GamePlugin {
         user.room.send(user, 'send_tour', { id: user.id, roomId: args.roomId }, [user], true)
     }
 
+    addAll(args, user) {
+        if (!user.isModerator) {
+            return
+        }
+
+        Object.keys(this.handler.crumbs.items).forEach(item => {
+            this.plugins.item.addItem({ item: item }, user)
+        })
+
+        Object.keys(this.handler.crumbs.furnitures).forEach(furniture => {
+            this.plugins.igloo.addFurniture({ furniture: furniture }, user)
+        })
+
+        Object.keys(this.handler.crumbs.floorings).forEach(flooring => {
+            this.plugins.igloo.updateFlooring({ flooring: flooring }, user)
+        })
+
+        Object.keys(this.handler.crumbs.igloos).forEach(igloo => {
+            this.plugins.igloo.addIgloo({ igloo: igloo }, user)
+        })
+    }
+
     // Commands
 
     bindCommands() {
@@ -133,7 +158,8 @@ export default class Chat extends GamePlugin {
         let command = args.shift().toLowerCase()
 
         if (command in this.commands) {
-            this.commands[command](args, user)
+            const succeeded = this.commands[command](args, user)
+            this.mongo.logCommand(user.id, command, args, succeeded)
             return true
         }
 
@@ -143,56 +169,65 @@ export default class Chat extends GamePlugin {
     addItem(args, user) {
         if (user.isModerator) {
             this.plugins.item.addItem({ item: args[0] }, user)
+            return true
         }
+        return false
     }
 
     addFurniture(args, user) {
         if (user.isModerator) {
             this.plugins.igloo.addFurniture({ furniture: args[0] }, user)
+            return true
         }
+        return false
     }
 
     addCoins(args, user) {
         if (user.isModerator) {
             user.updateCoins(args[0], true)
+            return true
         }
+        return false
     }
 
     joinRoom(args, user) {
         if (!user.isModerator) {
-            return
+            return false
         }
 
         let room = args[0]
 
         if (!room) {
-            return
+            return false
         }
 
         if (!isNaN(room)) {
             this.plugins.join.joinRoom({ room: parseInt(room) }, user)
-            return
+            return true
         }
 
         room = Object.values(this.rooms).find(r => r.name == room.toLowerCase())
 
         if (room) {
             this.plugins.join.joinRoom({ room: room.id }, user)
+            return true
         }
     }
 
     id(args, user) {
         if (!user.isModerator) {
-            return
+            return false
         }
         user.send('error', { error: `Your ID: ${user.id}` })
+        return true
     }
 
     userPopulation(args, user) {
         if (!user.isModerator) {
-            return
+            return false
         }
         user.send('error', { error: `Users online: ${this.handler.population}` })
+        return true
     }
 
 }

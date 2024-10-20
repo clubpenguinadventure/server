@@ -35,7 +35,7 @@ export default class SenseiInstance extends CardInstance {
         let users = [
             this.senseiData,
             {
-                username: this.user.username,
+                username: this.user.nickname,
                 color: this.user.color,
                 ninjaRank: this.user.ninjaRank
             }

@@ -13,6 +13,13 @@
         "debug": false,
         "logQueryParameters": false
     },
+    "mongodb": {
+        "host": "localhost",
+        "port": 27017,
+        "database": "cpchat",
+        "user": null,
+        "password": null
+    },
     "socketio": {
         "https": false,
         "ssl": {

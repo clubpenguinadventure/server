@@ -14,7 +14,7 @@ export default class OpenIgloos {
 
     add(user) {
         if (!this.includes(user.id)) {
-            this.list.push({ id: user.id, username: user.username })
+            this.list.push({ id: user.id, username: user.nickname })
         }
     }
 

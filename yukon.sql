@@ -101,6 +101,7 @@ CREATE TABLE `postcards` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(12) NOT NULL,
+  `nickname` varchar(12) NOT NULL,
   `email` varchar(254) DEFAULT NULL,
   `password` char(60) NOT NULL,
   `loginKey` text DEFAULT NULL,
@@ -118,7 +119,9 @@ CREATE TABLE `users` (
   `photo` int(11) NOT NULL DEFAULT 0,
   `flag` int(11) NOT NULL DEFAULT 0,
   `ninjaRank` tinyint(1) NOT NULL DEFAULT 0,
-  `ninjaProgress` tinyint(3) NOT NULL DEFAULT 0
+  `ninjaProgress` tinyint(3) NOT NULL DEFAULT 0,
+  `approved` tinyint(1) NOT NULL DEFAULT 0,
+  `twoFactorSecret` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Users';
 DELIMITER $$
 CREATE TRIGGER `trigger_users_insert` AFTER INSERT ON `users` FOR EACH ROW BEGIN

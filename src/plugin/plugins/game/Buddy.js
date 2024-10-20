@@ -41,7 +41,7 @@ export default class Buddy extends GamePlugin {
         }
 
         recipient.buddyRequests.push(user.id)
-        recipient.send('buddy_request', { id: user.id, username: user.username })
+        recipient.send('buddy_request', { id: user.id, username: user.nickname })
     }
 
     async buddyAccept(args, user) {
@@ -63,8 +63,8 @@ export default class Buddy extends GamePlugin {
         let username
 
         if (requester) {
-            username = requester.username
-            requester.addBuddy(user.id, user.username, true)
+            username = requester.nickname
+            requester.addBuddy(user.id, user.nickname, true)
 
         } else {
             username = await this.db.getUsername(args.id)

@@ -6,10 +6,11 @@ import RateLimiterFlexible from 'rate-limiter-flexible'
 
 export default class Server {
 
-    constructor(id, users, db, handler, config) {
+    constructor(id, users, db, handler, mongo, config) {
         this.id = id
         this.users = users
         this.db = db
+        this.mongo = mongo
         this.handler = handler
         this.config = config
 

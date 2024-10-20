@@ -38,7 +38,7 @@ export default class BuddyCollection extends Collection {
 
         for (let buddy in this.collection) {
             let online = this.isOnline(buddy)
-            let username = this.collection[buddy].user.username
+            let username = this.collection[buddy].user.nickname
 
             buddies.push({ id: parseInt(buddy), username: username, online: online })
 

@@ -11,8 +11,8 @@ import data from '@data/data'
 
 export default class GameHandler extends BaseHandler {
 
-    constructor(id, users, db, config) {
-        super(id, users, db, config)
+    constructor(id, users, db, mongo, config) {
+        super(id, users, db, mongo, config)
 
         this.crumbs = {
             items: data.items,

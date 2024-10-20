@@ -20,7 +20,7 @@ export default class PostcardCollection extends Collection {
                 include: {
                     model: this.db.users,
                     as: 'user',
-                    attributes: ['username']
+                    attributes: ['nickname']
                 }
             })
 

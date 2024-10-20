@@ -1,4 +1,5 @@
 import Database from './database/Database'
+import NoSQLDatabase from '@database/NoSQLDatabase'
 import GameHandler from './handlers/GameHandler'
 import Server from './server/Server'
 
@@ -12,10 +13,11 @@ class World extends Server {
 
         let users = {}
         let db = new Database(config.database)
+        let mongo = new NoSQLDatabase(config.mongodb)
 
-        let handler = new GameHandler(id, users, db, config)
+        let handler = new GameHandler(id, users, db, mongo, config)
 
-        super(id, users, db, handler, config)
+        super(id, users, db, handler, mongo, config)
     }
 
 }

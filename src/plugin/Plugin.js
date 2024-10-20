@@ -5,6 +5,7 @@ export default class Plugin {
 
         this.users = handler.users
         this.db = handler.db
+        this.mongo = handler.mongo
         this.config = handler.config
     }
 

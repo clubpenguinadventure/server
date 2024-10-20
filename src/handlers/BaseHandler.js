@@ -5,10 +5,11 @@ import EventEmitter from 'events'
 
 export default class BaseHandler {
 
-    constructor(id, users, db, config) {
+    constructor(id, users, db, mongo,  config) {
         this.id = id
         this.users = users
         this.db = db
+        this.mongo = mongo
         this.config = config
 
         this.logging = true
@@ -26,10 +27,15 @@ export default class BaseHandler {
         this.plugins = new PluginManager(this, pluginsDir)
     }
 
-    handle(message, user) {
+    async handle(message, user) {
         try {
             if (this.logging) {
                 console.log(`[${this.id}] Received: ${message.action} ${JSON.stringify(message.args)}`)
+                let userid = user.id;
+                if (!userid && message.args && message.args.username) {
+                    userid = (await this.db.getUserByUsername(message.args.username)).id
+                }
+                this.mongo.logPacket({ user: userid, action: message.action, args: message.args })
             }
 
             if (this.handleGuard(message, user)) {

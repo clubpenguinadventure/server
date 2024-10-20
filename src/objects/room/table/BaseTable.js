@@ -15,11 +15,11 @@ export default class BaseTable {
     }
 
     get playingUsers() {
-        return this.users.slice(0, 2).map(user => user.username)
+        return this.users.slice(0, 2).map(user => user.nickname)
     }
 
     isPlayingUser(user) {
-        return this.playingUsers.includes(user.username)
+        return this.playingUsers.includes(user.nickname)
     }
 
     getGame(args, user) {
@@ -34,7 +34,7 @@ export default class BaseTable {
         let turn = this.users.indexOf(user) + 1
 
         user.send('join_game', { turn: turn })
-        this.send('update_game', { username: user.username, turn: turn })
+        this.send('update_game', { username: user.nickname, turn: turn })
 
         if (this.users.length == 2) {
             this.started = true
@@ -53,7 +53,7 @@ export default class BaseTable {
 
     remove(user) {
         if (this.started && this.isPlayingUser(user)) {
-            this.reset(user.username)
+            this.reset(user.nickname)
 
         } else {
             this.users = this.users.filter(u => u != user)

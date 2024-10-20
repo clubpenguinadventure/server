@@ -15,7 +15,7 @@ export default class IgnoreCollection extends Collection {
         let ignores = []
 
         for (let ignore in this.collection) {
-            let username = this.collection[ignore].user.username
+            let username = this.collection[ignore].user.nickname
 
             ignores.push({ id: parseInt(ignore), username: username })
         }

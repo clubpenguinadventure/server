@@ -48,7 +48,7 @@ export default class Postcards extends BaseModel {
                 senderName: {
                     type: DataTypes.VIRTUAL,
                     get() {
-                        return this.user?.username
+                        return this.user?.nickname
                     }
                 }
             },

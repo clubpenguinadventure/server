@@ -87,11 +87,11 @@ export default class Database {
     async getUsername(userId) {
         return await this.findOne('users', {
             where: { id: userId },
-            attributes: ['username'],
+            attributes: ['nickname'],
             raw: true
 
         }, null, (result) => {
-            return result.username
+            return result.nickname
         })
     }
 

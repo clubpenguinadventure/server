@@ -24,7 +24,7 @@ export default class SledInstance extends BaseInstance {
     start() {
         const users = this.users.map(user => {
             return {
-                username: user.username,
+                username: user.nickname,
                 color: user.color,
                 hand: user.hand
             }

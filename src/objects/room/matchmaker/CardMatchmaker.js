@@ -52,7 +52,7 @@ export default class CardMatchmaker {
     }
 
     onTick(matched) {
-        let users = matched.map(player => player.user.username)
+        let users = matched.map(player => player.user.nickname)
 
         for (let player of matched) {
             player.send('tick_matchmaking', { tick: player.tick, users: users })

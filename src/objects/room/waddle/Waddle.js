@@ -29,7 +29,7 @@ export default class Waddle {
         }
 
         user.send('join_waddle', { waddle: this.id, seat: seat, game: this.game })
-        user.room.send(user, 'update_waddle', { waddle: this.id, seat: seat, username: user.username }, [])
+        user.room.send(user, 'update_waddle', { waddle: this.id, seat: seat, username: user.nickname }, [])
     }
 
     remove(user) {

@@ -77,11 +77,6 @@ const GameUserMixin = {
             return this.send('error', { error: 'Sorry this room is currently full' })
         }
 
-        if (!this.realname) {
-            this.realname = this.username
-            this.username = this.approved ? this.username : `P${this.id}`
-        }
-
         if (!isInRange(x, 0, 1520)) {
             x = 0
         }
@@ -205,7 +200,7 @@ const GameUserMixin = {
                     include: {
                         model: this.db.users,
                         as: 'user',
-                        attributes: ['username']
+                        attributes: ['nickname']
                     },
                     separate: true
                 },
@@ -215,7 +210,7 @@ const GameUserMixin = {
                     include: {
                         model: this.db.users,
                         as: 'user',
-                        attributes: ['username']
+                        attributes: ['nickname']
                     },
                     separate: true
                 },
@@ -247,7 +242,7 @@ const GameUserMixin = {
                     include: {
                         model: this.db.users,
                         as: 'user',
-                        attributes: ['username']
+                        attributes: ['nickname']
                     },
                     separate: true
                 },
@@ -280,9 +275,8 @@ const GameUserMixin = {
     },
 
     toJSON() {
-        return pick(this,
+        let json = pick(this,
             'id',
-            'username',
             'joinTime',
             'head',
             'face',
@@ -297,6 +291,9 @@ const GameUserMixin = {
             'y',
             'frame'
         )
+        json.username = this.nickname
+        json.realname = this.username
+        return json
     }
 
 }

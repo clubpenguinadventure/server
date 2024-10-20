@@ -16,7 +16,7 @@ export default class Table extends GamePlugin {
 
     getTables(args, user) {
         let tables = Object.fromEntries(Object.values(user.room.tables).map(table => {
-            let users = table.users.map(user => user.username)
+            let users = table.users.map(user => user.nickname)
 
             return [table.id, users]
         }))

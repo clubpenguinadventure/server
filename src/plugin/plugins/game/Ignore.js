@@ -39,7 +39,7 @@ export default class Ignore extends GamePlugin {
         let username
 
         if (ignore) {
-            username = ignore.username
+            username = ignore.nickname
             ignore.clearBuddyRequest(user.id)
 
         } else {
