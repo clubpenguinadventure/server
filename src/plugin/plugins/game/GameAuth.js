@@ -103,6 +103,8 @@ export default class GameAuth extends GamePlugin {
             response.token = token
         }
 
+        this.mongo.logLogin(user.id, user.address)
+
         user.send('game_auth', response)
     }
 

@@ -134,7 +134,7 @@ export default class GameHandler extends BaseHandler {
     }
 
     updateWorldPopulation() {
-        this.db.worlds.update({ population: this.population }, { where: { id: this.id }})
+        this.mongo.logPopulation(this.id, this.population)
     }
 
 }

@@ -129,10 +129,6 @@ export default class Database {
         })
     }
 
-    async getWorldPopulations() {
-        return await this.getCrumb('worlds')
-    }
-
     async getIgnored(userId, ignoreId) {
         return await this.findOne('ignores', {
             where: { userId: userId, ignoreId: ignoreId }

@@ -132,15 +132,6 @@ END
 $$
 DELIMITER ;
 
-CREATE TABLE `worlds` (
-  `id` varchar(100) NOT NULL,
-  `population` smallint(3) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Server populations';
-
-INSERT INTO `worlds` (`id`, `population`) VALUES
-('Blizzard', 0);
-
-
 ALTER TABLE `auth_tokens`
   ADD PRIMARY KEY (`userId`,`selector`) USING BTREE;
 
@@ -189,9 +180,6 @@ ALTER TABLE `postcards`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`) USING BTREE;
-
-ALTER TABLE `worlds`
-  ADD PRIMARY KEY (`id`);
 
 
 ALTER TABLE `bans`

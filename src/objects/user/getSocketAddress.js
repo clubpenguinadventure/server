@@ -11,5 +11,5 @@ export default function(socket, config) {
         return headers['x-forwarded-for'].split(',')[0]
     }
 
-    return socket.handshake.address
+    return socket.handshake.address == '::1' ? 'localhost' : socket.handshake.address
 }
