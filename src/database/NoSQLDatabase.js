@@ -9,26 +9,27 @@ export default class NoSQLDatabase {
         this.transactions = [];
         this.collections = [ 'packets', 'chat', 'commands', 'population', 'logins' ];
 
-        client.connect()
-            .then(() => {
-                this.db = client.db(config.database);
-
-                // Create collections if they don't exist
-                let existingCollections = this.db.listCollections().toArray();
-                for (let collection of this.collections) {
-                    if (!existingCollections.includes(collection)) {
-                        this.db.createCollection(collection);
-                    }
-                }
-
-                for (let transaction of this.transactions) {
-                    transaction();
-                }
-                this.transactions = [];
-            })
-            .catch(error => {
-                console.error(`[MongoDB] Unable to connect to the database: ${error}`);
-            });
+		client.connect()
+			.then(async () => {
+				this.db = client.db(config.database);
+		
+				// Create collections if they don't exist
+				let existingCollections = await this.db.listCollections().toArray(); // Await the Promise
+				existingCollections = existingCollections.map(collection => collection.name); // Extract the collection names
+				for (let collection of this.collections) {
+					if (!existingCollections.includes(collection)) {
+						await this.db.createCollection(collection); // Ensure you await the creation
+					}
+				}
+		
+				for (let transaction of this.transactions) {
+					transaction();
+				}
+				this.transactions = [];
+			})
+			.catch(error => {
+				console.error(`[MongoDB] Unable to connect to the database: ${error}`);
+			});
     }
 
     async logPacket(packet) {
