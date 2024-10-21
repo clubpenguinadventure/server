@@ -7,17 +7,19 @@ export default class NoSQLDatabase {
         const uri = `mongodb://${userString}${config.host}:${config.port}`;
         const client = new MongoClient(uri);
         this.transactions = [];
+        this.collections = [ 'packets', 'chat', 'commands', 'population', 'logins' ];
 
         client.connect()
             .then(() => {
                 this.db = client.db(config.database);
 
                 // Create collections if they don't exist
-                this.db.createCollection('packets');
-                this.db.createCollection('chat');
-                this.db.createCollection('commands');
-                this.db.createCollection('population');
-                this.db.createCollection('logins');
+                let existingCollections = this.db.listCollections().toArray();
+                for (let collection of this.collections) {
+                    if (!existingCollections.includes(collection)) {
+                        this.db.createCollection(collection);
+                    }
+                }
 
                 for (let transaction of this.transactions) {
                     transaction();
