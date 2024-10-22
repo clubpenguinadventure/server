@@ -172,7 +172,7 @@ export default class Users extends BaseModel {
     }
 
     get anonymous() {
-        return pick(this,
+        let picked = pick(this,
             'id',
             'username',
             'head',
@@ -185,6 +185,8 @@ export default class Users extends BaseModel {
             'photo',
             'flag',
         )
+        picked.username = this.nickname
+        return picked
     }
 
 }
