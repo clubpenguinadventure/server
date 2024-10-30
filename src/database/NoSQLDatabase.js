@@ -41,13 +41,13 @@ export default class NoSQLDatabase {
         await collection.insertOne(packet);
     }
 
-    async logChatMessage(user, message, room, filtered) {
+    async logChatMessage(user, nickname, server, room, message, filtered) {
         if (!this.db) {
             this.transactions.push(() => this.logChatMessage(user, message, room, filtered));
             return;
         }
         const collection = this.db.collection('chat');
-        await collection.insertOne({ user, message, room, filtered, timestamp: new Date() });
+        await collection.insertOne({ user, nickname, server, room, message, filtered, timestamp: new Date() });
     }
 
     async logCommand(user, command, args, succeeded) {

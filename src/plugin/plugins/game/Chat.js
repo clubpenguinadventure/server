@@ -34,7 +34,7 @@ export default class Chat extends GamePlugin {
 
     // Events
 
-    sendMessage(args, user) {
+    async sendMessage(args, user) {
         if (!hasProps(args, 'message')) {
             return
         }
@@ -58,15 +58,32 @@ export default class Chat extends GamePlugin {
             return
         }
 
+        let room;
+        if (user.room.id > 2000) {
+            let userId = user.room.id - 2000
+            if (userId == user.id) {
+                room = `[${user.room.id}] ${user.nickname}'s Igloo`
+            } else {
+                let igloo = this.handler.usersById[userId] || await this.db.getUser(userId)
+                if (user) {
+                    room = `[${user.room.id}] ${igloo.nickname}'s Igloo`
+                } else {
+                    room = 'Unknown Igloo'
+                }
+            }
+        } else {
+            room = `[${user.room.id}] ${this.handler.rooms[user.room.id].name}`
+        }
+
         for (let word of args.message.split(' ')) {
-            if (words.includes(word.replace(/[.!?#,:;'"-]/g, ''))) {
-                this.mongo.logChatMessage(user.id, args.message, user.room.id, true)
+            if (words.includes(word.toLowerCase().replace(/[.!?#,:;'"-]/g, ''))) {
+                this.mongo.logChatMessage(user.id, user.nickname, this.handler.id, room, args.message, true)
                 return
             }
         }
 
         user.room.send(user, 'send_message', { id: user.id, message: args.message }, [user], true)
-        this.mongo.logChatMessage(user.id, args.message, user.room.id, false)
+        this.mongo.logChatMessage(user.id, user.nickname, this.handler.id, room, args.message, false)
     }
 
     sendSafe(args, user) {

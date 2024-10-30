@@ -1,7 +1,7 @@
 [
     {
         "id": 100,
-        "name": "town",
+        "name": "Town",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -9,7 +9,7 @@
     },
     {
         "id": 110,
-        "name": "coffee",
+        "name": "Coffee Shop",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -17,7 +17,7 @@
     },
     {
         "id": 111,
-        "name": "book",
+        "name": "Book Room",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -25,7 +25,7 @@
     },
     {
         "id": 120,
-        "name": "dance",
+        "name": "Dance Club",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -33,7 +33,7 @@
     },
     {
         "id": 121,
-        "name": "lounge",
+        "name": "Lounge ",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -41,7 +41,7 @@
     },
     {
         "id": 130,
-        "name": "shop",
+        "name": "Clothes Shop",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -49,7 +49,7 @@
     },
     {
         "id": 200,
-        "name": "village",
+        "name": "Ski Village",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -57,7 +57,7 @@
     },
     {
         "id": 210,
-        "name": "sport",
+        "name": "Sports Shop",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -65,7 +65,7 @@
     },
     {
         "id": 220,
-        "name": "lodge",
+        "name": "Lodge",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -73,7 +73,7 @@
     },
     {
         "id": 221,
-        "name": "attic",
+        "name": "Lodge Attic",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -81,7 +81,7 @@
     },
     {
         "id": 230,
-        "name": "mtn",
+        "name": "Ski Hill",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -89,7 +89,7 @@
     },
     {
         "id": 300,
-        "name": "plaza",
+        "name": "Plaza",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -97,7 +97,7 @@
     },
     {
         "id": 310,
-        "name": "pet",
+        "name": "Pet Shop",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -105,7 +105,7 @@
     },
     {
         "id": 320,
-        "name": "dojo",
+        "name": "Dojo",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -113,7 +113,7 @@
     },
     {
         "id": 321,
-        "name": "dojoext",
+        "name": "Dojo Exterior",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -121,7 +121,7 @@
     },
     {
         "id": 330,
-        "name": "pizza",
+        "name": "Pizza Parlor",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -129,7 +129,7 @@
     },
     {
         "id": 400,
-        "name": "beach",
+        "name": "Beach",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -137,7 +137,7 @@
     },
     {
         "id": 800,
-        "name": "dock",
+        "name": "Dock",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -145,7 +145,7 @@
     },
     {
         "id": 801,
-        "name": "forts",
+        "name": "Snow Forts",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -153,7 +153,7 @@
     },
     {
         "id": 802,
-        "name": "rink",
+        "name": "Stadium",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -161,7 +161,7 @@
     },
     {
         "id": 803,
-        "name": "agent",
+        "name": "Agent HQ",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -169,7 +169,7 @@
     },
     {
         "id": 804,
-        "name": "boiler",
+        "name": "Boiler Room",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -177,7 +177,7 @@
     },
     {
         "id": 805,
-        "name": "berg",
+        "name": "Iceberg",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -185,7 +185,7 @@
     },
     {
         "id": 806,
-        "name": "cave",
+        "name": "Cave",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -193,7 +193,7 @@
     },
     {
         "id": 807,
-        "name": "shack",
+        "name": "Mine Shack",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -201,7 +201,7 @@
     },
     {
         "id": 809,
-        "name": "forest",
+        "name": "Forest",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -209,7 +209,7 @@
     },
     {
         "id": 810,
-        "name": "cove",
+        "name": "Cove",
         "member": 0,
         "maxUsers": 80,
         "game": 0,
@@ -217,7 +217,7 @@
     },
     {
         "id": 900,
-        "name": "astro",
+        "name": "Astro Barrier",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -225,7 +225,7 @@
     },
     {
         "id": 901,
-        "name": "beans",
+        "name": "Bean Counters",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -233,7 +233,7 @@
     },
     {
         "id": 902,
-        "name": "roundup",
+        "name": "Puffle Roundup",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -241,7 +241,7 @@
     },
     {
         "id": 903,
-        "name": "hydro",
+        "name": "Hydro Hopper",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -249,7 +249,7 @@
     },
     {
         "id": 904,
-        "name": "fish",
+        "name": "Ice Fishing",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -257,7 +257,7 @@
     },
     {
         "id": 907,
-        "name": "mission1",
+        "name": "Mission 1",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -265,7 +265,7 @@
     },
     {
         "id": 908,
-        "name": "mission2",
+        "name": "Mission 2",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -273,7 +273,7 @@
     },
     {
         "id": 909,
-        "name": "thinice",
+        "name": "Thin Ice",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -281,7 +281,7 @@
     },
     {
         "id": 910,
-        "name": "pizzatron",
+        "name": "Pizzatron 3000",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -289,7 +289,7 @@
     },
     {
         "id": 911,
-        "name": "mission3",
+        "name": "Mission 3",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -297,7 +297,7 @@
     },
     {
         "id": 912,
-        "name": "waves",
+        "name": "Catchin' Waves",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -305,7 +305,7 @@
     },
     {
         "id": 913,
-        "name": "mission4",
+        "name": "Mission 4",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -313,7 +313,7 @@
     },
     {
         "id": 914,
-        "name": "mission5",
+        "name": "Mission 5",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -321,7 +321,7 @@
     },
     {
         "id": 915,
-        "name": "mission6",
+        "name": "Mission 6",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -329,7 +329,7 @@
     },
     {
         "id": 916,
-        "name": "sub",
+        "name": "Aqua Grabber",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -337,7 +337,7 @@
     },
     {
         "id": 920,
-        "name": "mission7",
+        "name": "Mission 7",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -345,7 +345,7 @@
     },
     {
         "id": 921,
-        "name": "mission8",
+        "name": "Mission 8",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -353,7 +353,7 @@
     },
     {
         "id": 922,
-        "name": "mission9",
+        "name": "Mission 9",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -361,7 +361,7 @@
     },
     {
         "id": 923,
-        "name": "mission10",
+        "name": "Mission 10",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -369,7 +369,7 @@
     },
     {
         "id": 927,
-        "name": "mission11",
+        "name": "Mission 11",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -377,7 +377,7 @@
     },
     {
         "id": 951,
-        "name": "sensei",
+        "name": "Sensei Battle",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -385,7 +385,7 @@
     },
     {
         "id": 998,
-        "name": "card",
+        "name": "Card Jitsu",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
@@ -393,7 +393,7 @@
     },
     {
         "id": 999,
-        "name": "sled",
+        "name": "Sled Racing",
         "member": 0,
         "maxUsers": 80,
         "game": 1,
