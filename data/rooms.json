@@ -64,6 +64,14 @@
         "spawn": 0
     },
     {
+        "id": 212,
+        "name": "Everyday Phoning Facility",
+        "member": 0,
+        "maxUsers": 80,
+        "game": 0,
+        "spawn": 0
+    },
+    {
         "id": 220,
         "name": "Lodge",
         "member": 0,
