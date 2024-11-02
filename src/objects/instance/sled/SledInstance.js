@@ -53,7 +53,9 @@ export default class SledInstance extends BaseInstance {
 
     sendGameOver(user) {
         this.remove(user)
-        user.updateCoins(this.coins.shift(), true)
+        const coins = this.coins.shift()
+        user.updateCoins(coins)
+        user.send('game_over', { coins, game: "Sled Racing", stampCategory: 0, earnedStamps: [] })
     }
 
 }

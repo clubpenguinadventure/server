@@ -17,13 +17,9 @@ export default class Chat extends GamePlugin {
         }
 
         this.commands = {
-            'ai': this.addItem,
-            'af': this.addFurniture,
-            'ac': this.addCoins,
             'jr': this.joinRoom,
             'id': this.id,
-            'users': this.userPopulation,
-            'addall': this.addAll
+            'users': this.userPopulation
         }
 
         this.bindCommands()
@@ -138,28 +134,6 @@ export default class Chat extends GamePlugin {
         user.room.send(user, 'send_tour', { id: user.id, roomId: args.roomId }, [user], true)
     }
 
-    addAll(args, user) {
-        if (!user.isModerator) {
-            return
-        }
-
-        Object.keys(this.handler.crumbs.items).forEach(item => {
-            this.plugins.item.addItem({ item: item }, user)
-        })
-
-        Object.keys(this.handler.crumbs.furnitures).forEach(furniture => {
-            this.plugins.igloo.addFurniture({ furniture: furniture }, user)
-        })
-
-        Object.keys(this.handler.crumbs.floorings).forEach(flooring => {
-            this.plugins.igloo.updateFlooring({ flooring: flooring }, user)
-        })
-
-        Object.keys(this.handler.crumbs.igloos).forEach(igloo => {
-            this.plugins.igloo.addIgloo({ igloo: igloo }, user)
-        })
-    }
-
     // Commands
 
     bindCommands() {
@@ -180,30 +154,6 @@ export default class Chat extends GamePlugin {
             return true
         }
 
-        return false
-    }
-
-    addItem(args, user) {
-        if (user.isModerator) {
-            this.plugins.item.addItem({ item: args[0] }, user)
-            return true
-        }
-        return false
-    }
-
-    addFurniture(args, user) {
-        if (user.isModerator) {
-            this.plugins.igloo.addFurniture({ furniture: args[0] }, user)
-            return true
-        }
-        return false
-    }
-
-    addCoins(args, user) {
-        if (user.isModerator) {
-            user.updateCoins(args[0], true)
-            return true
-        }
         return false
     }
 

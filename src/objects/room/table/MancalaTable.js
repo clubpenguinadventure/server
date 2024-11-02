@@ -126,8 +126,10 @@ export default class MancalaTable extends BaseTable {
         let player1Sum = this.sum(this.map.slice(0, 7))
         let player2Sum = this.sum(this.map.slice(7, 14))
 
-        this.users[0].updateCoins(player1Sum, true)
-        this.users[1].updateCoins(player2Sum, true)
+        this.users[0].updateCoins(player1Sum)
+        this.users[0].send('game_over', { coins: player1Sum, game: "Mancala", stampCategory: 0, earnedStamps: [] })
+        this.users[1].updateCoins(player2Sum)
+        this.users[1].send('game_over', { coins: player2Sum, game: "Mancala", stampCategory: 0, earnedStamps: [] })
 
         this.reset()
     }

@@ -35,6 +35,7 @@ export default class Minigame extends GamePlugin {
     gameOver(args, user) {
         if (user.room.game || user.minigameRoom) {
             user.updateCoins(args.coins, true)
+            user.send('game_over', { coins: args.coins, game: user.room.name, stampCategory: 0, earnedStamps: [] })
         }
     }
 

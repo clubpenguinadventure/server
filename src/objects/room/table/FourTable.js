@@ -26,16 +26,20 @@ export default class FourTable extends BaseTable {
         let opponent = this.users[(this.currentTurn == 1) ? 1 : 0]
 
         if (this.isWin(move[0], move[1])) {
-            user.updateCoins(10, true)
-            opponent.updateCoins(5, true)
+            user.updateCoins(10)
+            user.send('game_over', { coins: 10, game: "Find Four", stampCategory: 0, earnedStamps: [] })
+            opponent.updateCoins(5)
+            opponent.send('game_over', { coins: 5, game: "Find Four", stampCategory: 0, earnedStamps: [] })
 
             this.reset()
             return
         }
 
         if (this.isFull()) {
-            user.updateCoins(5, true)
-            opponent.updateCoins(5, true)
+            user.updateCoins(5)
+            user.send('game_over', { coins: 5, game: "Find Four", stampCategory: 0, earnedStamps: [] })
+            opponent.updateCoins(5)
+            opponent.send('game_over', { coins: 5, game: "Find Four", stampCategory: 0, earnedStamps: [] })
 
             this.reset()
             return

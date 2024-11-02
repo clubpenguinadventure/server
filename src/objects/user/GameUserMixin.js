@@ -123,17 +123,13 @@ const GameUserMixin = {
         this.buddyRequests = this.buddyRequests.filter(request => request != id)
     },
 
-    updateCoins(coins, gameOver = false) {
+    updateCoins(coins) {
         coins = parseInt(coins)
 
         if (!isNaN(coins)) {
             coins = Math.max(Math.min(1000000000, this.coins + coins), 0)
 
             this.update({ coins: coins })
-        }
-
-        if (gameOver) {
-            this.send('game_over', { coins: coins || this.coins })
         }
     },
 
