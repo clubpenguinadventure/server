@@ -128,6 +128,7 @@ export default class GameHandler extends BaseHandler {
     }
 
     closeAndUpdatePopulation(user) {
+        this.mongo.logLogout(user.id)
         super.close(user)
 
         this.updateWorldPopulation()

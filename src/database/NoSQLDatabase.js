@@ -76,4 +76,17 @@ export default class NoSQLDatabase {
         const collection = this.db.collection('logins');
         await collection.insertOne({ user, ip, timestamp: new Date() });
     }
+
+    async logLogout(user) {
+        if (!this.db) {
+            this.transactions.push(() => this.logLogout(user));
+            return;
+        }
+        const collection = this.db.collection('logins');
+        let recentLogin = (await collection.find({ user }).sort({ timestamp: -1 }).limit(1).toArray())[0];
+        if (recentLogin) {
+            recentLogin.logout = new Date();
+            await collection.updateOne({ _id: recentLogin._id }, { $set: recentLogin });
+        }
+    }
 }
