@@ -61,6 +61,16 @@ export default {
                         }
                     },
                     required: false
+                },
+                {
+                    model: this.db.mutes,
+                    as: 'mute',
+                    where: {
+                        expires: {
+                            [Op.gt]: Date.now()
+                        }
+                    },
+                    required: false
                 }
             ]
 
@@ -70,7 +80,7 @@ export default {
             return true
 
         }).catch((error) => {
-            //this.handler.error(error)
+            this.handler.error(error)
 
             return false
         })

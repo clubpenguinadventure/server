@@ -55,6 +55,19 @@ const GameUserMixin = {
         return this.room?.isIgloo && this.room?.userId === this.id
     },
 
+    checkMuted() {
+        if (!this.mute) {
+            return false
+        }
+
+        if (this.mute.expires < Date.now()) {
+            return false
+        }
+
+        let hours = Math.round((this.mute.expires - Date.now()) / 60 / 60 / 1000)
+        return "You are muted for " + hours + " hours"
+    },
+
     setItem(slot, item) {
         if (this[slot] == item) {
             return
@@ -183,6 +196,16 @@ const GameUserMixin = {
                 {
                     model: this.db.bans,
                     as: 'ban',
+                    where: {
+                        expires: {
+                            [Op.gt]: Date.now()
+                        }
+                    },
+                    required: false
+                },
+                {
+                    model: this.db.mutes,
+                    as: 'mute',
                     where: {
                         expires: {
                             [Op.gt]: Date.now()

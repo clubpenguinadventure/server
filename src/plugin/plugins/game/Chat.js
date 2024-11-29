@@ -54,6 +54,11 @@ export default class Chat extends GamePlugin {
             return
         }
 
+        if (user.checkMuted()) {
+            user.send('error', { error: user.checkMuted() })
+            return
+        }
+
         let room;
         if (user.room.id > 2000) {
             let userId = user.room.id - 2000

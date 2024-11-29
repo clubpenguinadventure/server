@@ -131,6 +131,10 @@ export default class Users extends BaseModel {
             foreignKey: 'userId',
             as: 'ban'
         })
+        this.hasOne(db.mutes, {
+            foreignKey: 'userId',
+            as: 'mute'
+        })
         this.hasMany(db.buddies, {
             foreignKey: 'userId',
             as: 'buddies'
