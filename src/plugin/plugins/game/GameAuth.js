@@ -22,33 +22,39 @@ export default class GameAuth extends GamePlugin {
 
     async gameAuth(args, user) {
         if (user.triedGameAuth) {
-            // Prevent an exploit where a user can send a second game_auth packet to hijack another user's account
+            console.warn(`User ${user.id} tried to send a second game_auth packet`)
             return user.close()
         }
         user.triedGameAuth = true
 
         if (!hasProps(args, 'username', 'key')) {
+            console.warn(`User ${user.id} sent a game_auth packet without the required properties`)
             return
         }
 
         if (user.authenticated) {
+            console.warn(`User ${user.id} tried to authenticate when already authenticated`)
             return
         }
 
         let load = await user.load(args.username)
         if (!load) {
+            console.warn(`Unable to authenticate user ${args.username}`)
             return user.close()
         }
 
         if (this.handler.population >= this.handler.maxUsers && !user.isModerator) {
+            console.warn(`User ${user.id} tried to authenticate when the world is full`)
             return user.close()
         }
 
         if (user.ban || user.permaBan) {
+            console.warn(`User ${user.id} tried to authenticate when banned`)
             return user.close()
         }
 
         if (!args.key || args.key.length != 64) {
+            console.warn(`User ${user.id} sent a wrong key length`)
             return user.close()
         }
 
@@ -65,12 +71,14 @@ export default class GameAuth extends GamePlugin {
         try {
             decoded = jwt.verify(user.loginKey, this.config.CRYPTO_SECRET)
         } catch (err) {
+            console.warn(`Error verifying JWT: ${err}`)
             return user.close()
         }
 
         // Verify hash
         let hash = user.createLoginHash(args.key)
         if (decoded.hash != hash) {
+            console.warn(`User ${user.id} sent an invalid login key`)
             return user.close()
         }
 
