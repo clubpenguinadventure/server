@@ -68,7 +68,7 @@ export default class Join extends GamePlugin {
     // Functions
 
     getSpawn() {
-        let preferredSpawn = this.config.GAME_PREFERRED_SPAWN
+        let preferredSpawn = parseInt(this.config.GAME_PREFERRED_SPAWN)
 
         if (preferredSpawn && !this.rooms[preferredSpawn].isFull) {
             return this.rooms[preferredSpawn]

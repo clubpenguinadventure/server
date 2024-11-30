@@ -175,7 +175,7 @@ export default class Igloo extends GamePlugin {
     // Functions
 
     getIgloo(id) {
-        let iglooId = id + this.config.GAME_IGLOO_ID_OFFSET
+        let iglooId = id + parseInt(this.config.GAME_IGLOO_ID_OFFSET)
 
         if (iglooId in this.rooms) {
             return this.rooms[iglooId]
