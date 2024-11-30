@@ -7,7 +7,7 @@ export default class Database {
 
     constructor(config) {
         this.sequelize = new Sequelize(`${config.DATABASE_DIALECT}://${config.DATABASE_USER}:${config.DATABASE_PASSWORD}@${config.DATABASE_HOST}:${config.DATABASE_PORT}/${config.DATABASE_NAME}`, {
-            logging: this.config.DATABASE_DEBUG,
+            logging: config.DATABASE_DEBUG,
         })
 
         // Used to translate type id to string

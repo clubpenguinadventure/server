@@ -1,13 +1,19 @@
-const config = require('./config/config.json')
+const fs = require('fs');
 
+let config;
+if (fs.existsSync('./config/config.json')) {
+    config = JSON.parse(fs.readFileSync('./config/config.json'));
+} else {
+    config = process.env;
+}
 
-let apps = Object.keys(config.worlds).map(world => {
-    return {
-        name: world,
+let apps = [
+    {
+        name: config.WORLD_ID,
         script: './dist/World.js',
-        args: world
+        args: config.WORLD_ID
     }
-})
+]
 
 module.exports = {
     apps: apps

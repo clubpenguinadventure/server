@@ -6,6 +6,7 @@
     "CRYPTO_ROUNDS": 10,
     "CRYPTO_LOGIN_KEY_EXPIRY": 300,
     "DATABASE_HOST": "localhost",
+    "DATABASE_PORT": 3306,
     "DATABASE_USER": "user",
     "DATABASE_PASSWORD": "password",
     "DATABASE_NAME": "yukon",
