@@ -8,7 +8,11 @@ export default class FurnitureCollection extends Collection {
     }
 
     get furnitures() {
-        return this.handler.crumbs.furnitures
+        const furniture = {}
+        this.handler.crumbs.furnitures.forEach(f => {
+            furniture[f.id] = f
+        })
+        return furniture
     }
 
     getQuantity(item) {

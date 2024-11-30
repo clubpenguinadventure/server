@@ -76,6 +76,15 @@ CREATE TABLE `inventories` (
   `itemId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='User owned clothing';
 
+CREATE TABLE `mutes` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `issued` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `expires` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `moderatorId` int(11) DEFAULT NULL,
+  `message` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='User mute records';
+
 CREATE TABLE `pets` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,

@@ -13,14 +13,12 @@ export default class GameHandler extends BaseHandler {
 
     constructor(id, users, db, mongo, config) {
         super(id, users, db, mongo, config)
+        
+        this.init(id, config)
+    }
 
-        this.crumbs = {
-            items: data.items,
-            igloos: data.igloos,
-            furnitures: data.furnitures,
-            floorings: data.floorings,
-            cards: data.cards
-        }
+    async init(id, config) {
+        await this.setCrumbs()
 
         this.usersById = {}
         this.maxUsers = config.worlds[id].maxUsers
@@ -36,6 +34,16 @@ export default class GameHandler extends BaseHandler {
         this.startPlugins('/game')
 
         this.updateWorldPopulation()
+    }
+
+    async setCrumbs() {
+        this.crumbs = {
+            items: await this.mongo.getCrumb('items'),
+            igloos: await this.mongo.getCrumb('igloos'),
+            furnitures: await this.mongo.getCrumb('furniture'),
+            floorings: await this.mongo.getCrumb('flooring'),
+            cards: data.cards
+        }
     }
 
     setRooms() {

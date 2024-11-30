@@ -11,7 +11,9 @@ export default class Server {
         this.users = users
         this.db = db
         this.mongo = mongo
-        this.handler = handler
+        handler.then((handler) => {
+            this.handler = handler
+        })
         this.config = config
 
         let io = this.createIo(config.socketio, {

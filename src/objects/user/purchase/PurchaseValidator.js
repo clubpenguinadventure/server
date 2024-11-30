@@ -34,7 +34,7 @@ export default class PurchaseValidator {
             return false
         }
 
-        let item = this.crumbs[type][id]
+        let item = this.crumbs[type].find(item => item.id == id)
 
         if (!item) {
             return false

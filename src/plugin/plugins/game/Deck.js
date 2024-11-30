@@ -13,7 +13,7 @@ export default class Sensei extends GamePlugin {
         }
 
         this.starterDeckId = 821
-        this.starterDeck = this.crumbs.items[this.starterDeckId]
+        this.starterDeck = this.crumbs.items.find(item => item.id == this.starterDeckId)
     }
 
     addStarterDeck(args, user) {

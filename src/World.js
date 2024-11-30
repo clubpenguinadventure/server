@@ -15,7 +15,11 @@ class World extends Server {
         let db = new Database(config.database)
         let mongo = new NoSQLDatabase(config.mongodb)
 
-        let handler = new GameHandler(id, users, db, mongo, config)
+        let handler = new Promise((resolve) => {
+            mongo.events.once('ready', () => {
+                resolve(new GameHandler(id, users, db, mongo, config))
+            })
+        })
 
         super(id, users, db, handler, mongo, config)
     }

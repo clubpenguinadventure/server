@@ -17,7 +17,10 @@ export default class Item extends GamePlugin {
             'remove_item': this.removeItem
         }
 
-        this.items = this.crumbs.items
+        this.items = {}
+        this.crumbs.items.forEach(item => {
+            this.items[item.id] = item
+        })
     }
 
     updatePlayer(args, user) {
