@@ -1,7 +1,7 @@
 export default function(socket, config) {
     let headers = socket.handshake.headers
 
-    let ipAddressHeader = config.rateLimit.ipAddressHeader
+    let ipAddressHeader = config.RATE_LIMIT_IP_ADDRESS_HEADER
 
     if (ipAddressHeader && headers[ipAddressHeader]) {
         return headers[ipAddressHeader]

@@ -16,21 +16,23 @@ export default class Server {
         })
         this.config = config
 
-        let io = this.createIo(config.socketio, {
+        let io = this.createIo({
+            https: false
+        }, {
             cors: {
-                origin: config.cors.origin,
+                origin: config.CORS_ORIGIN,
                 methods: ['GET', 'POST']
             },
             path: '/'
         })
 
-        if (config.rateLimit.enabled) {
-            this.connectionLimiter = this.createLimiter(config.rateLimit.addressConnectsPerSecond)
-            this.addressLimiter = this.createLimiter(config.rateLimit.addressEventsPerSecond)
-            this.userLimiter = this.createLimiter(config.rateLimit.userEventsPerSecond)
+        if (config.RATE_LIMIT_ENABLED) {
+            this.connectionLimiter = this.createLimiter(config.RATE_LIMIT_ADDRESS_CONNECTS_PER_SECOND)
+            this.addressLimiter = this.createLimiter(config.RATE_LIMIT_ADDRESS_EVENTS_PER_SECOND)
+            this.userLimiter = this.createLimiter(config.RATE_LIMIT_USER_EVENTS_PER_SECOND)
         }
 
-        this.server = io.listen(config.worlds[id].port)
+        this.server = io.listen(config.WORLD_PORT)
         this.server.on('connection', this.onConnection.bind(this))
     }
 
@@ -42,9 +44,7 @@ export default class Server {
     }
 
     createIo(config, options) {
-        let server = (config.https)
-            ? this.httpsServer(config.ssl)
-            : this.httpServer()
+        let server = this.httpServer()
 
         return require('socket.io')(server, options)
     }
@@ -53,20 +53,8 @@ export default class Server {
         return require('http').createServer()
     }
 
-    httpsServer(ssl) {
-        let fs = require('fs')
-        let loaded = {}
-
-        // Loads ssl files
-        for (let key in ssl) {
-            loaded[key] = fs.readFileSync(ssl[key]).toString()
-        }
-
-        return require('https').createServer(loaded)
-    }
-
     onConnection(socket) {
-        if (!this.config.rateLimit.enabled) {
+        if (!this.config.RATE_LIMIT_ENABLED) {
             this.initUser(socket)
             return
         }
@@ -94,7 +82,7 @@ export default class Server {
     }
 
     onMessage(message, user) {
-        if (!this.config.rateLimit.enabled) {
+        if (!this.config.RATE_LIMIT_ENABLED) {
             this.handler.handle(message, user)
             return
         }

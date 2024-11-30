@@ -7,14 +7,14 @@ export default class Database {
 
     constructor(config) {
         this.sequelize = new Sequelize(
-            config.database,
-            config.user,
-            config.password,
+            config.DATABASE_NAME,
+            config.DATABASE_USER,
+            config.DATABASE_PASSWORD,
             {
-                host: config.host,
-                dialect: config.dialect,
-                logging: (config.debug) ? console.log : false,
-                logQueryParameters: config.logQueryParameters
+                host: config.DATABASE_HOST,
+                dialect: config.DATABASE_DIALECT,
+                logging: (config.DATABASE_DEBUG) ? console.log : false,
+                logQueryParameters: config.DATABASE_LOG_QUERY_PARAMETERS
             }
         )
 

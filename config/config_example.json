@@ -1,52 +1,26 @@
 {
-    "crypto": {
-        "secret": "",
-        "rounds": 10,
-        "loginKeyExpiry": 300
-    },
-    "database": {
-        "host": "localhost",
-        "user": "user",
-        "password": "password",
-        "database": "yukon",
-        "dialect": "mysql",
-        "debug": false,
-        "logQueryParameters": false
-    },
-    "mongodb": {
-        "host": "localhost",
-        "port": 27017,
-        "database": "cpchat",
-        "user": null,
-        "password": null
-    },
-    "socketio": {
-        "https": false,
-        "ssl": {
-            "cert": "/path/to/cert.crt",
-            "ca": "/path/to/ca.ca-bundle",
-            "key": "/path/to/key.key"
-        }
-    },
-    "cors": {
-        "origin": "http://localhost:8080"
-    },
-    "rateLimit": {
-        "enabled": true,
-        "addressConnectsPerSecond": 5,
-        "addressEventsPerSecond": 50,
-        "userEventsPerSecond": 10,
-        "ipAddressHeader": false
-    },
-    "worlds": {
-        "Blizzard": {
-            "host": "localhost",
-            "port": 6112,
-            "maxUsers": 300
-        }
-    },
-    "game": {
-        "preferredSpawn": 0,
-        "iglooIdOffset": 2000
-    }
+    "WORLD_ID": "Blizzard",
+    "WORLD_PORT": 6112,
+    "WORLD_MAX_USERS": 300,
+    "CRYPTO_SECRET": "",
+    "CRYPTO_ROUNDS": 10,
+    "CRYPTO_LOGIN_KEY_EXPIRY": 300,
+    "DATABASE_HOST": "localhost",
+    "DATABASE_USER": "user",
+    "DATABASE_PASSWORD": "password",
+    "DATABASE_NAME": "yukon",
+    "DATABASE_DIALECT": "mysql",
+    "DATABASE_DEBUG": false,
+    "DATABASE_LOG_QUERY_PARAMETERS": false,
+    "MONGODB_HOST": "localhost",
+    "MONGODB_PORT": 27017,
+    "MONGODB_DATABASE": "yukon",
+    "CORS_ORIGIN": "*",
+    "RATE_LIMIT_ENABLED": true,
+    "RATE_LIMIT_ADDRESS_CONNECTS_PER_SECOND": 5,
+    "RATE_LIMIT_ADDRESS_EVENTS_PER_SECOND": 50,
+    "RATE_LIMIT_USER_EVENTS_PER_SECOND": 10,
+    "RATE_LIMIT_IP_ADDRESS_HEADER": false,
+    "GAME_PREFERRED_SPAWN": 0,
+    "GAME_IGLOO_ID_OFFSET": 2000
 }

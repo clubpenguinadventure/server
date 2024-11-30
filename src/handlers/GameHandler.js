@@ -21,7 +21,7 @@ export default class GameHandler extends BaseHandler {
         await this.setCrumbs()
 
         this.usersById = {}
-        this.maxUsers = config.worlds[id].maxUsers
+        this.maxUsers = config.WORLD_MAX_USERS
 
         this.rooms = this.setRooms()
 

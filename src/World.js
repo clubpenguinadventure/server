@@ -2,18 +2,24 @@ import Database from './database/Database'
 import NoSQLDatabase from '@database/NoSQLDatabase'
 import GameHandler from './handlers/GameHandler'
 import Server from './server/Server'
+import fs from 'fs'
 
-import config from '../config/config.json'
+let config;
+if (fs.existsSync('./config/config.json')) {
+    config = JSON.parse(fs.readFileSync('./config/config.json'));
+} else {
+    config = process.env;
+}
 
 
 class World extends Server {
 
     constructor(id) {
-        console.log(`[${id}] Starting world ${id} on port ${config.worlds[id].port}`)
+        console.log(`[${id}] Starting world ${id} on port ${config.WORLD_PORT}`)
 
         let users = {}
-        let db = new Database(config.database)
-        let mongo = new NoSQLDatabase(config.mongodb)
+        let db = new Database(config)
+        let mongo = new NoSQLDatabase(config)
 
         let handler = new Promise((resolve) => {
             mongo.events.once('ready', () => {
@@ -26,10 +32,4 @@ class World extends Server {
 
 }
 
-let args = process.argv.slice(2)
-
-for (let world of args) {
-    if (world in config.worlds) {
-        new World(world)
-    }
-}
+new World(config.WORLD_ID)

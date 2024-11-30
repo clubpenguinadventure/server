@@ -68,7 +68,7 @@ export default class Join extends GamePlugin {
     // Functions
 
     getSpawn() {
-        let preferredSpawn = this.config.game.preferredSpawn
+        let preferredSpawn = this.config.GAME_PREFERRED_SPAWN
 
         if (preferredSpawn && !this.rooms[preferredSpawn].isFull) {
             return this.rooms[preferredSpawn]
@@ -90,7 +90,7 @@ export default class Join extends GamePlugin {
         }
 
         // Ensures igloos are above all default rooms
-        let iglooId = id + this.config.game.iglooIdOffset
+        let iglooId = id + this.config.GAME_IGLOO_ID_OFFSET
 
         if (!(iglooId in this.rooms)) {
             let igloo = await this.db.getIgloo(id)
@@ -99,7 +99,7 @@ export default class Join extends GamePlugin {
                 return null
             }
 
-            this.rooms[iglooId] = new Igloo(igloo, this.db, this.config.game.iglooIdOffset)
+            this.rooms[iglooId] = new Igloo(igloo, this.db, this.config.GAME_IGLOO_ID_OFFSET)
         }
 
         return this.rooms[iglooId]

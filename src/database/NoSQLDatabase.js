@@ -5,8 +5,8 @@ export default class NoSQLDatabase {
     constructor(config) {
         this.events = new EventEmitter();
         this.config = config;
-        const userString = config.user ? `${config.user}:${config.password}@` : '';
-        const uri = `mongodb://${userString}${config.host}:${config.port}`;
+        const userString = config.MONGODB_USER ? `${config.MONGODB_USER}:${config.MONGODB_PASSWORD}@` : '';
+        const uri = `mongodb://${userString}${config.MONGODB_HOST}:${config.MONGODB_PORT}`;
         const client = new MongoClient(uri);
         this.crumbs = [
             'flooring',
@@ -20,7 +20,7 @@ export default class NoSQLDatabase {
 
 		client.connect()
 			.then(async () => {
-				this.db = client.db(config.database);
+				this.db = client.db(config.MONGODB_DATABASE);
 		
 				// Create collections if they don't exist
 				let existingCollections = await this.db.listCollections().toArray(); // Await the Promise

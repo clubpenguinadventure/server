@@ -63,7 +63,7 @@ export default class GameAuth extends GamePlugin {
 
         // Verify JWT
         try {
-            decoded = jwt.verify(user.loginKey, this.config.crypto.secret)
+            decoded = jwt.verify(user.loginKey, this.config.CRYPTO_SECRET)
         } catch (err) {
             return user.close()
         }
@@ -111,7 +111,7 @@ export default class GameAuth extends GamePlugin {
     async genAuthToken(user) {
         let selector = uuid()
         let validator = crypto.randomBytes(32).toString('hex')
-        let validatorHash = await bcrypt.hash(validator, this.config.crypto.rounds)
+        let validatorHash = await bcrypt.hash(validator, this.config.CRYPTO_ROUNDS)
 
         user.token.selector = selector
         user.token.validatorHash = validatorHash
