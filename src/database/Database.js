@@ -6,17 +6,9 @@ import Sequelize from 'sequelize'
 export default class Database {
 
     constructor(config) {
-        this.sequelize = new Sequelize(
-            config.DATABASE_NAME,
-            config.DATABASE_USER,
-            config.DATABASE_PASSWORD,
-            {
-                host: config.DATABASE_HOST,
-                dialect: config.DATABASE_DIALECT,
-                logging: (config.DATABASE_DEBUG) ? console.log : false,
-                logQueryParameters: config.DATABASE_LOG_QUERY_PARAMETERS
-            }
-        )
+        this.sequelize = new Sequelize(`${config.DATABASE_DIALECT}://${config.DATABASE_USER}:${config.DATABASE_PASSWORD}@${config.DATABASE_HOST}:${config.DATABASE_PORT}/${config.DATABASE_NAME}`, {
+            logging: this.config.DATABASE_DEBUG,
+        })
 
         // Used to translate type id to string
         this.slots = [ 'color', 'head', 'face', 'neck', 'body', 'hand', 'feet', 'flag', 'photo', 'award' ]
