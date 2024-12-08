@@ -42,6 +42,7 @@ export default class GameHandler extends BaseHandler {
             igloos: await this.mongo.getCrumb('igloos'),
             furnitures: await this.mongo.getCrumb('furniture'),
             floorings: await this.mongo.getCrumb('flooring'),
+            stamps: await this.mongo.getCrumb('stamps'),
             cards: data.cards
         }
     }

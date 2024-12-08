@@ -107,6 +107,13 @@ CREATE TABLE `postcards` (
   `hasRead` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='User postcards';
 
+CREATE TABLE `stamps` (
+	`userId` INT(11) NOT NULL,
+	`stampId` INT(11) NOT NULL,
+	PRIMARY KEY (`userId`, `stampId`) USING BTREE,
+	CONSTRAINT `stamps_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='User owned stamps';
+
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(12) NOT NULL,

@@ -14,6 +14,7 @@ export default class NoSQLDatabase {
             'igloos',
             'items',
             'pets',
+            'stamps',
             'worlds'
         ]
         this.collections = ['packets', 'chat', 'commands', 'population', 'logins'].concat(this.crumbs);

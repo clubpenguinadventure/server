@@ -11,6 +11,7 @@ import IgnoreCollection from '@database/collections/IgnoreCollection'
 import InventoryCollection from '@database/collections/InventoryCollection'
 import PetCollection from '@database/collections/PetCollection'
 import PostcardCollection from '@database/collections/PostcardCollection'
+import StampCollection from '@database/collections/StampCollection'
 
 import PurchaseValidator from './purchase/PurchaseValidator'
 
@@ -269,6 +270,11 @@ const GameUserMixin = {
                     model: this.db.pets,
                     as: 'pets',
                     separate: true
+                },
+                {
+                    model: this.db.stamps,
+                    as: 'stamps',
+                    separate: true
                 }
             ]
 
@@ -281,6 +287,7 @@ const GameUserMixin = {
             result.cards = new CardCollection(this, result.cards)
             result.postcards = new PostcardCollection(this, result.postcards)
             result.pets = new PetCollection(this, result.pets)
+            result.stamps = new StampCollection(this, result.stamps)
 
             this.setPermissions()
 

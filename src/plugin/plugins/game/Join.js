@@ -31,6 +31,7 @@ export default class Join extends GamePlugin {
             furniture: user.furniture,
             postcards: user.postcards,
             pets: user.pets,
+            stamps: user.stamps,
             muted: user.checkMuted()
         })
 
