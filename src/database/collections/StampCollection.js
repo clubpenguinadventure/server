@@ -7,8 +7,8 @@ export default class StampCollection extends Collection {
         super(user, models, 'stamps', 'itemId')
     }
 
-    add(stamp) {
-        super.add({ userId: this.user.id, stamp })
+    add(stampId) {
+        super.add({ userId: this.user.id, stampId })
     }
 
 }
