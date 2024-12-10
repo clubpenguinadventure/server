@@ -116,6 +116,26 @@ export default class Users extends BaseModel {
                     type: DataTypes.TEXT,
                     allowNull: true,
                     defaultValue: null
+                },
+                stampbookColor: {
+                    type: DataTypes.INTEGER(4),
+                    allowNull: false,
+                    defaultValue: 1
+                },
+                stampbookPattern: {
+                    type: DataTypes.INTEGER(4),
+                    allowNull: false,
+                    defaultValue: 1
+                },
+                stampbookHighlight: {
+                    type: DataTypes.INTEGER(4),
+                    allowNull: false,
+                    defaultValue: 1
+                },
+                stampbookClasp: {
+                    type: DataTypes.INTEGER(4),
+                    allowNull: false,
+                    defaultValue: 1
                 }
             },
             { sequelize, timestamps: false, tableName: 'users' }

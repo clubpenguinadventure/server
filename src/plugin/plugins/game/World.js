@@ -7,6 +7,7 @@ export default class World extends GamePlugin {
 
         this.events = {
             'stamp_earned': this.stampEarned,
+            'update_stampbook': this.updateStampbook
         }
     }
 
@@ -29,6 +30,19 @@ export default class World extends GamePlugin {
         user.stamps.add(args.id)
 
         user.send('stamp_earned', { id: args.id })
+    }
+
+    async updateStampbook(args, user) {
+        if (!user) {
+            return
+        }
+
+        const update = {}
+        Object.keys(args).forEach(key => {
+            update[`stampbook${key.charAt(0).toUpperCase() + key.slice(1)}`] = args[key]
+        })
+
+        user.update(update)
     }
 
 }

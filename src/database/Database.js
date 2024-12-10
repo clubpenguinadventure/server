@@ -133,6 +133,12 @@ export default class Database {
         })
     }
 
+    async getUserStamps(userId) {
+        return await this.findAll('stamps', {
+            where: { userId: userId }
+        })
+    }
+
     /*========== Helper functions ==========*/
 
     findOne(table, options = {}, emptyReturn = null, callback = null) {
