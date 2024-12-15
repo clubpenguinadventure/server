@@ -208,6 +208,14 @@
         "spawn": 0
     },
     {
+        "id": 808,
+        "name": "Mine",
+        "member": 0,
+        "maxUsers": 80,
+        "game": 0,
+        "spawn": 0
+    },
+    {
         "id": 809,
         "name": "Forest",
         "member": 0,
