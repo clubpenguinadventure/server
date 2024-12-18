@@ -11,7 +11,7 @@ const config = require(file)
 
 try {
     let secret = crypto.randomBytes(32).toString('hex')
-    config.crypto.secret = secret
+    config.CRYPTO_SECRET = secret
 
     fs.writeFileSync(file, JSON.stringify(config, null, 4) + '\n')
     console.log('Secret updated')
