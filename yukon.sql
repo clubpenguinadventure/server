@@ -139,9 +139,9 @@ CREATE TABLE `users` (
   `approved` tinyint(1) NOT NULL DEFAULT 0,
   `twoFactorSecret` text DEFAULT NULL,
   `stampbookColor` TINYINT(4) NOT NULL DEFAULT 1,
-	`stampbookPattern` TINYINT(4) NOT NULL DEFAULT 0,
-	`stampbookHighlight` TINYINT(4) NOT NULL DEFAULT 1,
-	`stampbookClasp` TINYINT(4) NOT NULL DEFAULT 1
+  `stampbookPattern` TINYINT(4) NOT NULL DEFAULT 0,
+  `stampbookHighlight` TINYINT(4) NOT NULL DEFAULT 1,
+  `stampbookClasp` TINYINT(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Users';
 DELIMITER $$
 CREATE TRIGGER `trigger_users_insert` AFTER INSERT ON `users` FOR EACH ROW BEGIN
