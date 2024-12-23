@@ -137,7 +137,11 @@ CREATE TABLE `users` (
   `ninjaRank` tinyint(1) NOT NULL DEFAULT 0,
   `ninjaProgress` tinyint(3) NOT NULL DEFAULT 0,
   `approved` tinyint(1) NOT NULL DEFAULT 0,
-  `twoFactorSecret` text DEFAULT NULL
+  `twoFactorSecret` text DEFAULT NULL,
+  `stampbookColor` TINYINT(4) NOT NULL DEFAULT 1,
+	`stampbookPattern` TINYINT(4) NOT NULL DEFAULT 0,
+	`stampbookHighlight` TINYINT(4) NOT NULL DEFAULT 1,
+	`stampbookClasp` TINYINT(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Users';
 DELIMITER $$
 CREATE TRIGGER `trigger_users_insert` AFTER INSERT ON `users` FOR EACH ROW BEGIN
