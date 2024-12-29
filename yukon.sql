@@ -1,3 +1,4 @@
+USE yukon;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -107,13 +108,6 @@ CREATE TABLE `postcards` (
   `hasRead` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='User postcards';
 
-CREATE TABLE `stamps` (
-	`userId` INT(11) NOT NULL,
-	`stampId` INT(11) NOT NULL,
-	PRIMARY KEY (`userId`, `stampId`) USING BTREE,
-	CONSTRAINT `stamps_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='User owned stamps';
-
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(12) NOT NULL,
@@ -143,6 +137,7 @@ CREATE TABLE `users` (
   `stampbookHighlight` TINYINT(4) NOT NULL DEFAULT 1,
   `stampbookClasp` TINYINT(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Users';
+
 DELIMITER $$
 CREATE TRIGGER `trigger_users_insert` AFTER INSERT ON `users` FOR EACH ROW BEGIN
     INSERT INTO igloos (userId) VALUES (NEW.id);
@@ -258,6 +253,14 @@ ALTER TABLE `pets`
 ALTER TABLE `postcards`
   ADD CONSTRAINT `postcards_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `postcards_ibfk_2` FOREIGN KEY (`senderId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `stamps` (
+	`userId` INT(11) NOT NULL,
+	`stampId` INT(11) NOT NULL,
+	PRIMARY KEY (`userId`, `stampId`) USING BTREE,
+	CONSTRAINT `stamps_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='User owned stamps';
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
