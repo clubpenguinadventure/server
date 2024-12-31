@@ -8,6 +8,8 @@ import Waddle from '@objects/room/waddle/Waddle'
 
 import data from '@data/data'
 
+import crypto from 'crypto'
+
 
 export default class GameHandler extends BaseHandler {
 
@@ -34,6 +36,8 @@ export default class GameHandler extends BaseHandler {
         this.startPlugins('/game')
 
         this.updateWorldPopulation()
+
+        this.authorizeHub()
     }
 
     async setCrumbs() {
@@ -80,7 +84,7 @@ export default class GameHandler extends BaseHandler {
     }
 
     handleGuard(message, user) {
-        return !user.authenticated && message.action != 'game_auth'
+        return !user.authenticated && ( message.action != 'game_auth' && message.action != 'register_hub' )
     }
 
     close(user) {
@@ -145,6 +149,20 @@ export default class GameHandler extends BaseHandler {
 
     updateWorldPopulation() {
         this.mongo.logPopulation(this.id, this.population)
+    }
+
+    authorizeHub() {
+        this.hubAuthKey = crypto.randomBytes(32).toString('hex')
+        fetch(`${this.config.HUB_URL}/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                server: this.id,
+                authKey: this.hubAuthKey
+            })
+        })
     }
 
 }
