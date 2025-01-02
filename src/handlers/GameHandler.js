@@ -37,7 +37,7 @@ export default class GameHandler extends BaseHandler {
 
         this.updateWorldPopulation()
 
-        this.authorizeHub()
+        setTimeout(() => this.authorizeHub(), 10000)
     }
 
     async setCrumbs() {
